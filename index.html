@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BD Tax Rebate Calculator - BO Account Investment</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>BO Account Tax Rebate Calculator</h1>
+      <p>বাংলাদেশ আয়কর আইন অনুযায়ী শেয়ার বাজারে বিনিয়োগের কর রেয়াত (Tax Rebate) ক্যালকুলেটর</p>
+    </header>
+
+    <main class="grid-layout">
+      <!-- Input Panel -->
+      <section class="card input-section">
+        <h2>১. ট্যাক্স সার্টিফিকেট ইনপুট (BDT)</h2>
+        <div class="form-group">
+          <label for="openingCost">Opening Equity at Cost (১ জুলাই ক্রয়মূল্য)</label>
+          <input type="number" id="openingCost" value="0" min="0" step="0.01" />
+          <small>নতুন অ্যাকাউন্ট হলে 0.00 রাখুন</small>
+        </div>
+
+        <div class="form-group">
+          <label for="closingCost">Closing Equity at Cost (৩০ জুন ক্রয়মূল্য)</label>
+          <input type="number" id="closingCost" value="114089.34" min="0" step="0.01" />
+          <small>সার্টিফিকেটের "Cost value of Securities"</small>
+        </div>
+
+        <div class="form-group">
+          <label for="deposit">Deposit during this period (মোট ব্যাংক জমা)</label>
+          <input type="number" id="deposit" value="141606.19" min="0" step="0.01" />
+          <small>ব্যাংক থেকে বিও অ্যাকাউন্টে মোট ট্রান্সফার</small>
+        </div>
+
+        <div class="form-group">
+          <label for="withdrawal">Withdrawal during this period (মোট উত্তোলন)</label>
+          <input type="number" id="withdrawal" value="26239.00" min="0" step="0.01" />
+          <small>বিও অ্যাকাউন্ট থেকে ব্যাংকে উত্তোলন</small>
+        </div>
+
+        <div class="form-group">
+          <label for="ledgerBalance">Closing Ledger Balance (নগদ স্থিতি)</label>
+          <input type="number" id="ledgerBalance" value="67.07" min="0" step="0.01" />
+          <small>৩০ জুনে বিও অ্যাকাউন্টে অবশিষ্ট ক্যাশ (IT-10B এর জন্য)</small>
+        </div>
+
+        <div class="derived-box">
+          <div class="derived-item">
+            <span>Net Cash Inflow (Deposit - Withdrawal):</span>
+            <strong id="netInflowDisplay">৳ 1,15,367.19</strong>
+          </div>
+          <div class="derived-item">
+            <span>Incremental Stock Holding (Closing - Opening):</span>
+            <strong id="incrementalCostDisplay">৳ 1,14,089.34</strong>
+          </div>
+        </div>
+      </section>
+
+      <!-- Output & Comparison Panel -->
+      <section class="card output-section">
+        <h2>২. মেথড অনুযায়ী রেয়াতযোগ্য বিনিয়োগ</h2>
+        
+        <div class="method-card recommended">
+          <div class="badge">সর্বাধিক নিরাপদ ও গ্রহণযোগ্য (100% Audit Safe)</div>
+          <h3>Method 1: Net Inflow Cap Method</h3>
+          <div class="amount" id="method1Amount">৳ 1,14,089.34</div>
+          <p class="formula">Formula: <code>MAX(0, MIN(Net Inflow, Incremental Cost))</code></p>
+          <p class="desc">ব্যাংক থেকে আসা নিট ফ্রেশ ফান্ড এবং শেয়ার ক্রয়মূল্যের নিট বৃদ্ধির মধ্যে যেটি কম। কর নিরীক্ষায় (DCT Audit) এটিই সবচেয়ে বেশি গ্রহণযোগ্য।</p>
+        </div>
+
+        <div class="method-card">
+          <div class="badge warning">শর্তসাপেক্ষ / পোর্টফোলিও রোটেশন</div>
+          <h3>Method 2: Incremental Holding Method</h3>
+          <div class="amount" id="method2Amount">৳ 1,14,089.34</div>
+          <p class="formula">Formula: <code>MAX(0, Closing Cost - Opening Cost)</code></p>
+          <p class="desc">শুধুমাত্র বছর শেষে শেয়ারের ক্রয়মূল্য কতটুকু বেড়েছে তা বিবেচনা করে। ক্যাপিটাল গেইন রোটেশন থাকলে নিরীক্ষক উৎস জানতে চাইতে পারেন।</p>
+        </div>
+
+        <div class="method-card">
+          <div class="badge danger">কেবল নতুন অ্যাকাউন্টের জন্য প্রযোজ্য</div>
+          <h3>Method 3: Closing Cumulative Method</h3>
+          <div class="amount" id="method3Amount">৳ 1,14,089.34</div>
+          <p class="formula">Formula: <code>Closing Equity at Cost</code></p>
+          <p class="desc">সরাসরি সার্টিফিকেটের মোট কস্ট ভ্যালু। কেবল Opening Balance = 0.00 হলে এটি বৈধ; পুরাতন অ্যাকাউন্টে এটি ব্যবহার করলে ডুপ্লিকেট হবে।</p>
+        </div>
+
+        <div class="return-guide">
+          <h3>আয়কর রিটার্নে প্রদর্শনের নির্দেশিকা</h3>
+          <ul>
+            <li><strong>বিনিয়োগ রেয়াত তফসিল (Schedule 24D):</strong> <span id="guideRebate">৳ 1,14,089.34</span></li>
+            <li><strong>সম্পদ বিবরণী (IT-10B - শেয়ার অর্জনমূল্য):</strong> <span id="guideShareAsset">৳ 1,14,089.34</span></li>
+            <li><strong>সম্পদ বিবরণী (IT-10B - ব্রোকারেজ ক্যাশ):</strong> <span id="guideCashAsset">৳ 67.07</span></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Bangladesh Income Tax Act Compliant BO Investment Helper • Ready for GitHub & Vercel</p>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
