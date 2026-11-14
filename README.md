@@ -1,6 +1,6 @@
 # BD BO Account Tax Rebate Calculator
 
-Bangladesh Income Tax Act compliant calculator to determine eligible share market investment for Tax Rebate (Schedule 24D) and Asset Statement (IT-10B).
+Bangladesh Income Tax Act compliant calculator to determine eligible share market investment for Tax Rebate.
 
 ## Included Methods
 1. **Method 1: Net Inflow Cap Method** (`MAX(0, MIN(Net Inflow, Incremental Cost))`) — Most audit-safe.

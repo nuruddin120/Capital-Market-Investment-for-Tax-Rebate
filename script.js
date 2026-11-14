@@ -10,7 +10,6 @@ function calculateRebate() {
   const closingCost = parseFloat(document.getElementById("closingCost").value) || 0;
   const deposit = parseFloat(document.getElementById("deposit").value) || 0;
   const withdrawal = parseFloat(document.getElementById("withdrawal").value) || 0;
-  const ledgerBalance = parseFloat(document.getElementById("ledgerBalance").value) || 0;
 
   const netInflow = deposit - withdrawal;
   const incrementalCost = closingCost - openingCost;
@@ -31,10 +30,6 @@ function calculateRebate() {
   document.getElementById("method1Amount").textContent = formatBDT(method1);
   document.getElementById("method2Amount").textContent = formatBDT(method2);
   document.getElementById("method3Amount").textContent = formatBDT(method3);
-
-  document.getElementById("guideRebate").textContent = formatBDT(method1);
-  document.getElementById("guideShareAsset").textContent = formatBDT(closingCost);
-  document.getElementById("guideCashAsset").textContent = formatBDT(ledgerBalance);
 }
 
 const inputIds = ["openingCost", "closingCost", "deposit", "withdrawal", "ledgerBalance"];
