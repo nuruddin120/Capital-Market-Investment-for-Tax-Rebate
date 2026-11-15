@@ -3,7 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1e3a8a" />
+  <meta name="description" content="Bangladesh Income Tax Act Compliant BO Account Tax Rebate Investment Calculator" />
   <title>BD Tax Rebate Calculator - BO Account Investment</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -90,9 +95,18 @@
     </main>
 
     <footer class="footer">
-      <p>Bangladesh Income Tax Act Compliant BO Investment Helper • Ready for GitHub & Vercel</p>
+      <p>Bangladesh Income Tax Act Compliant BO Investment Helper • Offline PWA Ready</p>
     </footer>
   </div>
   <script src="script.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js").catch((err) => {
+          console.log("SW registration failed:", err);
+        });
+      });
+    }
+  </script>
 </body>
 </html>
